@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoHotKey_V2リファレンス_1章</title>
+    <link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="./css/sections.css">
+</head>
+
+<body>
+    <div id="site-wrapper">
+        <a href="#top" class="page-top-btn">TOP</a>
+        <header id="top">
+            <hgroup>
+                <h1>AutoHotKey_V2</h1>
+                <h1>１章　起動条件</h1>
+            </hgroup>
+            <div>
+                <ol>
+                    <li><a href="index.html">トップ</a></li>
+                    <li><a href="startcondition.html">起動条件</a></li>
+                    <li><a href="">処理</a></li>
+                    <li><a href="">構文</a></li>
+                    <li><a href="">書式</a></li>
+                    <li><a href="">Tips</a></li>
+                </ol>
+            </div>
+        </header>
+        <main>
+            <section>
+                <h3>章ショートカット</h3>
+                <ul>
+                    <li><a href="#sec1">キーボードからキーを入力した時（Hotkey）</a></li>
+                    <li><a href="#sec2">キーワードを入力した時（Hotstring）</a></li>
+                    <li><a href="#sec3">特定ソフトが起動した時（タイマー監視）</a></li>
+                    <li><a href="#sec4">特定ソフトがアクティブな間だけ有効</a></li>
+                    <li><a href="#sec5">まとめ</a></li>
+                </ul>
+            </section>
+            <section id="sec1">
+                <h2>■キーボードからキーを入力した時（Hotkey）</h2>
+                <h3>【概要】</h3>
+                <p>
+                    特定のキーやキーの組み合わせが押されたときに処理を開始します。<br>
+                    最もよく使用される起動条件です。
+                </p>
+                <section>
+                    <h3>【基本構文】</h3>
+                    <div>
+                        <p>キー::{<br>
+                            　処理<br>
+                            }</p>
+                        または（AutoHotkey v2で推奨）
+                        <p>
+                            キー::{<br>
+                            　処理<br>
+                            }
+                        </p>
+                    </div>
+                    <h3>【サンプル】</h3>
+                    <p>F1キーを押すとメモ帳を起動</p>
+                    <div>
+                        F1::{<br>
+                        　 Run "notepad.exe"<br>
+                        }
+                    </div>
+                </section>
+                <section>
+                    <h3>【応用例1】</h3>
+                    <p>Ctrl + Shift + A</p>
+                    <div>
+                        ^+a::{<br>
+                        　MsgBox "実行されました"<br>
+                        }
+                    </div>
+                </section>
+                <section>
+                    <h3>【応用例2】</h3>
+                    <p>Windows + Eで任意のフォルダを開く</p>
+                    <div>
+                        #e::{<br>
+                        　Run "C:\Work"<br>
+                        }
+                    </div>
+                </section>
+                <section>
+                    <h3>【応用例3】</h3>
+                    <p>Alt + QでGoogleを開く</p>
+                    <div>
+                        !q::{<br>
+                        　Run "https://www.google.com"<br>
+                        }
+                    </div>
+                </section>
+                <section>
+                    <h3>【解説】</h3>
+                    <option>修飾キー一覧</option>
+                    <table border="1">
+                        <tr>
+                            <th>
+                                記号
+                            </th>
+                            <th>
+                                キー
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                ^
+                            </td>
+                            <td>
+                                Ctrl
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                !
+                            </td>
+                            <td>
+                                Alt
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                +
+                            </td>
+                            <td>
+                                Shift
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                #
+                            </td>
+                            <td>
+                                Windowsキー
+                            </td>
+                        </tr>
+                    </table>
+                    <p>複数組み合わせることもできます。</p>
+                    <div>
+                        ^!+F1<br>
+                        ↓<br>
+                        Ctrl + Alt + Shift + F1
+                    </div>
+                </section>
+                <section>
+                    <h3>【注意点】</h3>
+                    <p>キー名はAutoHotkeyが定義している名前を使用します。</p>
+                    <div>
+                        例）
+                        <ul>
+                            <li>
+                                Enter
+                            </li>
+                            <li>
+                                Space
+                            </li>
+                            <li>
+                                Esc
+                            </li>
+                            <li>
+                                Tab
+                            </li>
+                            <li>
+                                Delete
+                            </li>
+                            <li>
+                                Home
+                            </li>
+                            <li>
+                                End
+                            </li>
+                            <li>
+                                PgUp
+                            </li>
+                            <li>
+                                PgDn
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+            <section id="sec2">
+                <h2>■キーワードを入力した時（Hotstring）</h2>
+                <section>
+                    <h3>【概要】</h3>
+                    <p>特定の文字列が入力された瞬間に処理を開始します。<br>
+                        単語の置換だけではなく、プログラムを実行することもできます。</p>
+                </section>
+                <section>
+                    <h3>【基本構文】</h3>
+                    <div>
+                        ::文字列::<br>
+                        {<br>
+                        　 処理<br>
+                        }
+                    </div>
+                </section>
+                <section>
+                    <h3>【サンプル】</h3>
+                    <div>
+                        ::abc::{<br>
+                        　MsgBox "abcが入力されました"<br>
+                        }
+                    </div>
+                </section>
+                <section>
+                    <h3>【応用例1】</h3>
+                    <p>メールアドレスを自動入力</p>
+                    <div>
+                        ::mail::{<br>
+                        　SendText "sample@example.com"<br>
+                        }
+                    </div>
+                </section>
+                <section>
+                    <h3>【応用例2】</h3>
+                    <p>住所を入力</p>
+                    <div>
+                        ::addr::{<br>
+                        　SendText "神奈川県○○市..."<br>
+                        }
+                    </div>
+                </section>
+                <section>
+                    <h3>【応用例3】</h3>
+                    <div>
+                        ::today::{<br>
+                        　SendText FormatTime(, "yyyy/MM/dd") <br>
+                        }
+                    </div>
+                </section>
+                <section>
+                    <h3>【解説】</h3>
+                    <p>
+                        Hotstringは通常、
+                    </p>
+                    <ul>
+                        <li>
+                            スペース
+                        </li>
+                        <li>
+                            Enter
+                        </li>
+                        <li>
+                            Tab
+                        </li>
+                    </ul>
+                    <p>
+                        などの終了キーを押したタイミングで発動します。
+                    </p>
+                    <section>
+                        <h3>即座に実行したい場合</h3>
+                        <div>
+                            :*:abc::{<br>
+                            　MsgBox "入力されました"<br>
+                            }
+                        </div>
+                        <p>
+                            *オプションを付けることで、終了キーを待たずに反応します。<br>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>【注意点】</h3>
+                        <p>大量のHotstringを登録すると管理しづらくなるため、用途ごとにファイルを分けることをおすすめします。</p>
+                    </section>
+                </section>
+                <section id="sec3">
+                    <h2>■ 特定ソフトが起動した時（タイマー監視）</h2>
+                    <section>
+                        <h3>【概要】</h3>
+                        <p>AutoHotkeyには「アプリが起動した瞬間」を直接検知する機能はありません。<br>
+                            そのため、一定間隔でプロセスを監視する方法が一般的です。</p>
+                    </section>
+                    <section>
+                        <h3>【基本構文】</h3>
+                        <div>
+                            SetTimer CheckApp, 1000 <br><br>
+
+                            CheckApp() { <br>
+                            　; 処理<br>
+                            }
+                        </div>
+                        <p>1000は1秒ごとを意味します。</p>
+                    </section>
+                    <section>
+                        <h3>【サンプル】</h3>
+                        <p>メモ帳が起動したら通知</p>
+                        <div>
+                            global started := false <br><br>
+
+                            SetTimer CheckNotepad, 1000 <br><br>
+
+                            CheckNotepad(){ <br>
+                            　if WinExist("ahk_exe notepad.exe") { <br>
+                            　　if !started { <br>
+                            　　started := true <br>
+                            　　MsgBox "メモ帳が起動しました" <br>
+                            　　} <br>
+                            　} else { <br>
+                            　　started := false <br>
+                            　} <br>
+                            }
+                        </div>
+                    </section>
+                    <section>
+                        <h3>【応用例1】</h3>
+                        <p>起動したら別ソフトも起動</p>
+                        <div>
+                            Run "calc.exe"
+                        </div>
+                    </section>
+                    <section>
+                        <h3>【応用例2】</h3>
+                        <p>起動したらウィンドウサイズ変更</p>
+                        <div>
+                            WinMove 0, 0, 1200, 700, "ahk_exe notepad.exe"
+                        </div>
+                    </section>
+                    <section>
+                        <h3>【応用例3】</h3>
+                        <div>
+                            WinActivate "ahk_exe notepad.exe" <br>
+
+                            Sleep 500 <br>
+
+                            SendText "起動しました"
+                        </div>
+                    </section>
+                    <section>
+                        <h3>【解説】</h3>
+                        <p>よく使用する検索条件</p>
+                        <ul>
+                            <li>
+                                <p>実行ファイル名</p>
+                                <div>
+                                    ahk_exe
+                                </div>
+                            </li>
+                            <li>
+                                <p>ウィンドウクラス</p>
+                                <div>
+                                    ahk_class
+                                </div>
+                            </li>
+                            <li>
+                                <p>プロセスID</p>
+                                <div>
+                                    ahk_pid
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>【注意点】</h3>
+                        <p>監視間隔を短くしすぎるとCPU使用率が上がります。</p>
+                        <p>一般的には</p>
+                        <div>
+                            500ms～1000ms
+                        </div>
+                        <p>程度が推奨されます。</p>
+                    </section>
+                </section>
+                <section id="sec4">
+                    <h2>■ 特定ソフトがアクティブな間だけ有効</h2>
+                    <section>
+                        <h3>【概要】</h3>
+                        <p>特定ソフトが最前面にある時だけショートカットを有効にします。<br>
+                            ゲームや業務アプリで非常によく使われます。</p>
+                    </section>
+                    <section>
+                        <h3>【基本構文】</h3>
+                        <div>
+                            #HotIf WinActive("条件") <br>
+                            キー::{ <br>
+                            } <br><br>
+
+                            #HotIf
+                        </div>
+                        <p>最後の</p>
+                        <div>
+                            #HotIf
+                        </div>
+                        <p>で条件を解除します。</p>
+                    </section>
+                    <section>
+                        <h3>【サンプル】</h3>
+                        <p>メモ帳でのみF1が有効</p>
+                        <div>
+                            #HotIf WinActive("ahk_exe notepad.exe") <br> <br>
+
+                            F1::{<br>
+                            　 MsgBox "メモ帳です" <br>
+                            } <br><br>
+
+                            #HotIf
+                        </div>
+                    </section>
+                    <section>
+                        <h3>【応用例1】</h3>
+                        <p>Excelだけで有効</p>
+                        <div>
+                            #HotIf WinActive("ahk_exe EXCEL.EXE") <br> <br>
+
+                            F2::{ <br>
+                            　MsgBox "Excel専用" <br>
+                            } <br> <br>
+
+                            #HotIf
+                        </div>
+                    </section>
+                    <section>
+                        <h3>【応用例2】</h3>
+                        <p>ゲーム専用ショートカット</p>
+                        <div>#HotIf WinActive("ahk_exe Game.exe") <br> <br>
+
+                            F12::{ <br>
+                            　SendText "こんにちは" <br>
+                            } <br>
+
+                            #HotIf
+                        </div>
+                    </section>
+                    <section>
+                        <h3>【応用例3】</h3>
+                        <p>ブラウザだけで有効</p>
+                        <div>
+                            #HotIf WinActive("ahk_exe chrome.exe") <br> <br>
+
+                            ^1::{ <br>
+                            　 MsgBox "Chrome専用" <br>
+                            } <br> <br>
+
+                            #HotIf
+                        </div>
+                    </section>
+                    <section>
+                        <h3>【解説】</h3>
+                        <p>WinActive()にはさまざまな条件を指定できます。</p>
+                        <ul>
+                            <li>
+                                <p>実行ファイル名で判定</p>
+                                <div>
+                                    WinActive("ahk_exe notepad.exe")
+                                </div>
+                            </li>
+                            <li>
+                                <p>ウィンドウタイトルで判定</p>
+                                <div>
+                                    WinActive("ahk_class Notepad")
+                                </div>
+                            </li>
+                            <li>
+                                <p>ウィンドウクラスで判定</p>
+                                <div>
+                                    WinActive("ahk_class Notepad")
+                                </div>
+                            </li>
+                        </ul>
+                        <p>用途に応じて使い分けますが、 <br>実行ファイル名（ahk_exe）による判定が最も安定しておりおすすめです。</p>
+                    </section>
+                    <section>
+                        <h3>【注意点】</h3>
+                        <p>#HotIfを解除し忘れると、その後に定義したすべてのホットキーにも条件が適用されてしまいます。<br>
+                            そのため、条件付きホットキーの定義が終わったら、必ず次のように記述する癖をつけましょう。</p>
+                    </section>
+                </section>
+            </section>
+            <section id="sec5">
+                <h2>第1章のまとめ</h2>
+                <p>この章では、AutoHotkeyの基本となる4つの起動条件を学びました。</p>
+                <ul>
+                    <li>Hotkey：キー入力をきっかけに処理を実行</li>
+                    <li>Hotstring：文字列入力をきっかけに処理を実行</li>
+                    <li>タイマー監視：特定ソフトの起動を検知して処理を実行</li>
+                    <li>#HotIf：特定ソフトがアクティブな間だけホットキーを有効化</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+
+        </footer>
+    </div>
+</body>
+
+</html>
