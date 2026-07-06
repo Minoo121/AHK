@@ -1,71 +1,72 @@
- @font-face {
-     font-family: "senobi";
-     src: url("../font/Senobi-Gothic-Medium.ttf") format(truetype);
- }
+@font-face {
+    font-family: "senobi";
+    src: url("../font/Senobi-Gothic-Medium.ttf") format(truetype);
+}
 
- @font-face {
-     font-family: "irohamaru";
-     src: url("../font/irohamaru-Medium.ttf") format(truetype);
- }
+@font-face {
+    font-family: "irohamaru";
+    src: url("../font/irohamaru-Medium.ttf") format(truetype);
+}
 
- body {
-     position: fixed;
-     /* または absolute */
-     top: 0;
-     left: 0;
-     right: 0;
-     bottom: 0;
- }
+body {
+    position: fixed;
+    /* または absolute */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 
- header {
-     height: 20%;
-     border-bottom: 1px solid black;
- }
+header {
+    height: 20%;
+    border-bottom: 1px solid black;
+}
 
- main {
-     height: 70%;
- }
+main {
+    height: 70%;
+}
 
- footer {
-     height: 10%;
-     font-family: "irohamaru";
+footer {
+    height: 10%;
+    font-family: "irohamaru";
+}
 
- }
+a {
+    text-decoration: none;
+}
 
- a {
-     text-decoration: none;
- }
+a:hover {
+    color: gray;
+}
 
- a:hover {
-     color: gray;
- }
+.page-top-btn {
+    /* 常に画面右下に固定 */
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    /* ボタンのデザイン（お好みで調整してください） */
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    /* ページの他の要素より手前に表示 */
+    z-index: 9999;
+}
 
- .page-top-btn {
-     /* 常に画面右下に固定 */
-     position: fixed;
-     bottom: 40px;
-     right: 40px;
-     /* ボタンのデザイン（お好みで調整してください） */
-     width: 100px;
-     height: 100px;
-     background-color: #333;
-     color: #fff;
-     border-radius: 50%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     text-decoration: none;
-     font-size: 14px;
-     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-     /* ページの他の要素より手前に表示 */
-     z-index: 9999;
- }
-
- #site-wrapper {
-      position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;       /* 100vwより100%の方が横スクロールバーのバグを防げます */
-  height: 100dvh;    /* 100vhの代わりに100dvhを使うと、スマホのバーを考慮した正確な高さになります */
-  overflow-y: auto;  
- }
+#site-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 100vwより100%の方が横スクロールバーのバグを防げます */
+    height: 100dvh;
+    /* 100vhの代わりに100dvhを使うと、スマホのバーを考慮した正確な高さになります */
+    overflow-y: auto;
+}
