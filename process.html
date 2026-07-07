@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/sections.css">
+    <title>AutoHotKey_V2リファレンス_2章</title>
+</head>
+
+<body>
+    <div id="site-wrapper">
+        <a href="#top" class="page-top-btn">TOP</a>
+        <header id="top">
+            <hgroup>
+                <h1>AutoHotKey_V2</h1>
+                <h1>２章　処理</h1>
+            </hgroup>
+            <div>
+                <ol>
+                    <li><a href="index.html">トップ</a></li>
+                    <li><a href="startcondition.html">起動条件</a></li>
+                    <li><a href="process.html">処理</a></li>
+                    <li><a href="">構文</a></li>
+                    <li><a href="">書式</a></li>
+                    <li><a href="">Tips</a></li>
+                </ol>
+            </div>
+        </header>
+        <main>
+            <section>
+                <h3>章ショートカット</h3>
+                <ul>
+                    <li><a href="#sec1"> アプリ起動（Run）</a></li>
+                    <li><a href="#sec2">テキスト入力（SendText）</a></li>
+                    <li><a href="#sec3">キー入力（Send）</a></li>
+                    <li><a href="#sec4">クリップボード</a></li>
+                    <li><a href="#sec5">待機（Sleep）</a></li>
+                    <li><a href="#sec6">メッセージ表示（MsgBox）</a></li>
+                    <li><a href="#sec7">第2章のまとめ</a></li>
+                </ul>
+            </section>
+            <section id="sec1">
+                <h2>■ アプリ起動（Run）</h2>
+                <h3>【概要】</h3>
+                <p>
+                    アプリケーションやファイル、フォルダ、URLを開きます。<br>
+                    AutoHotkeyで最も使用頻度の高い命令の一つです。
+                </p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    Run "実行したいもの"
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <p>メモ帳を起動</p>
+                <div>
+                    Run "notepad.exe"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例1】</h3>
+                <p>電卓を起動</p>
+                <div>
+                    Run "calc.exe"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例2】</h3>
+                <p>フォルダを開く</p>
+                <div>
+                    Run "C:\Users\User\Documents"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例3】</h3>
+                <p>Webサイトを開く</p>
+                <div>
+                    Run "https://www.google.com"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例4】</h3>
+                <p>ファイルを開く</p>
+                <div>
+                    Run "C:\Work\sample.xlsx"
+                </div>
+                <p>Excelがインストールされていれば自動でExcelが起動します。</p>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>Runには次のようなものを指定できます。</p>
+                <table border="1">
+                    <tr>
+                        <th>指定するもの</th>
+                        <th>例</th>
+                    </tr>
+                    <tr>
+                        <td>実行ファイル</td>
+                        <td>notepad.exe</td>
+                    </tr>
+                    <tr>
+                        <td>フルパス</td>
+                        <td>C:\Tool\App.exe</td>
+                    </tr>
+                    <tr>
+                        <td>フォルダ</td>
+                        <td>C:\work</td>
+                    </tr>
+                    <tr>
+                        <td>URL</td>
+                        <td>https://...</td>
+                    </tr>
+                    <tr>
+                        <td>ファイル</td>
+                        <td>sample.xlsx</td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>スペースを含むパスは必ずダブルクォーテーションで囲みます。</p>
+                <div>
+                    Run "C:\Program Files\App\App.exe"
+                </div>
+            </section>
+            <section id="sec2">
+                <h2>■ テキスト入力（SendText）</h2>
+                <h3>【概要】</h3>
+                <p>
+                    文字列をそのまま入力します。<br>
+                    日本語・英数字・記号などの入力に適しています。
+                </p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    SendText "入力する文字列"
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <div>
+                    SendText "こんにちは"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例1】</h3>
+                <p>住所入力</p>
+                <div>
+                    SendText "神奈川県横浜市…"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例2】</h3>
+                <p>メールアドレス入力</p>
+                <div>
+                    SendText "sample@example.com"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例3】</h3>
+                <p>改行を含めて入力（`nは改行コード）</p>
+                <div>
+                    SendText "1行目`n2行目"
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>SendTextは文字列をそのまま送信します。</p>
+                <div>
+                    SendText "^c"<br>
+                    ↓<br>
+                    ^c <br>
+                    と入力されます。
+                </div>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>ショートカットキーを送りたい場合はSendを使用します。</p>
+            </section>
+            <section id="sec3">
+                <h2>■ キー入力（Send）</h2>
+                <h3>【概要】</h3>
+                <p>キーボード操作そのものを送信します。
+                    <br>ショートカットキーの送信にも使用します。
+                </p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    Send "送信するキー"
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <p>Enterキー</p>
+                <div>
+                    Send "{Enter}"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例1】</h3>
+                <p>Ctrl + C</p>
+                <div>
+                    Send "^c"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例2】</h3>
+                <p>Ctrl + Shift + Esc</p>
+                <div>
+                    Send "^+{Esc}"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例3】</h3>
+                <p>Windows + R</p>
+                <div>
+                    Send "#r"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例4】</h3>
+                <p>Tabキーを5回押す</p>
+                <div>
+                    Loop 5 <br>
+                    {<br>
+                    　Send "{Tab}"<br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <option>よく使うキー名</option>
+                <table border="1">
+                    <tr>
+                        <th>キー</th>
+                        <th>記述</th>
+                    </tr>
+                    <tr>
+                        <td>Enter</td>
+                        <td>{Enter}</td>
+                    </tr>
+                    <tr>
+                        <td>Tab</td>
+                        <td>{Tab}</td>
+                    </tr>
+                    <tr>
+                        <td>Esc</td>
+                        <td>{Esc}</td>
+                    </tr>
+                    <tr>
+                        <td>Space</td>
+                        <td>{Space}</td>
+                    </tr>
+                    <tr>
+                        <td>Delete</td>
+                        <td>{Delete}</td>
+                    </tr>
+                    <tr>
+                        <td>Backspace</td>
+                        <td>{Backspace}</td>
+                    </tr>
+                    <tr>
+                        <td>Up</td>
+                        <td>{Up}</td>
+                    </tr>
+                    <tr>
+                        <td>Down</td>
+                        <td>{Down}</td>
+                    </tr>
+                    <tr>
+                        <td>Left</td>
+                        <td>{Left}</td>
+                    </tr>
+                    <tr>
+                        <td>Right</td>
+                        <td>{Right}</td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>
+                    文字入力だけならSendTextの方が安全です。<br>
+                    キー操作を送る場合のみSendを使用しましょう。
+                </p>
+            </section>
+            <section id="sec4">
+                <h2>■ クリップボード</h2>
+                <h3>【概要】</h3>
+                <p>
+                    コピーした内容を取得・変更できます。<br>
+                    定型文入力やデータ加工によく利用します。
+                </p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <p>コピー内容取得</p>
+                <div>
+                    text := A_Clipboard
+                </div>
+                <p>コピー内容変更</p>
+                <div>
+                    A_Clipboard := "Hello"
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <p>クリップボードを表示</p>
+                <div>
+                    MsgBox A_Clipboard
+                </div>
+            </section>
+            <section>
+                <h3>【応用例1】</h3>
+                <p>コピー内容を大文字にする</p>
+                <div>
+                    A_Clipboard := StrUpper(A_Clipboard)
+                </div>
+            </section>
+            <section>
+                <h3>【応用例2】</h3>
+                <p>コピー内容を小文字にする</p>
+                <div>
+                    A_Clipboard := StrLower(A_Clipboard)
+                </div>
+            </section>
+            <section>
+                <h3>【応用例3】</h3>
+                <p>コピーして表示</p>
+                <div>
+                    Send "^c"<br>
+
+                    ClipWait <br>
+
+                    MsgBox A_Clipboard <br>
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>
+                    ClipWaitはコピーが完了するまで待機します。<br>
+                    これを書かないと
+                </p>
+                <div>
+                    Send "^c" <br>
+                    MsgBox A_Clipboard
+                </div>
+                <p>では古い内容を取得してしまう場合があります。</p>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>
+                    クリップボードを書き換えると元の内容は失われます。<br>
+                    必要なら事前に保存
+                </p>
+                <div>
+                    old := A_Clipboard
+                </div>
+            </section>
+            <section id="sec5">
+                <h2>■ 待機（Sleep）</h2>
+                <h3>【概要】</h3>
+                <p>
+                    指定した時間だけ処理を停止します。<br>
+                    アプリの起動待ちなどによく使用します。
+                </p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    Sleep 1000
+                </div>
+                <p>1000 = 1秒</p>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <div>
+                    Run "notepad.exe" <br>
+                    Sleep 1000 <br>
+                    SendText "Hello"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例1】</h3>
+                <p>0.5秒待機</p>
+                <div>
+                    sleep 500
+                </div>
+            </section>
+            <section>
+                <h3>【応用例2】</h3>
+                <p>3秒待機</p>
+                <div>
+                    sleep 3000
+                </div>
+            </section>
+            <section>
+                <h3>【応用例3】</h3>
+                <p>キー入力の間隔を空ける</p>
+                <div>
+                    Send "A"<br>
+                    Sleep 100 <br>
+                    Send "B" <br>
+                    Sleep 100 <br>
+                    Send "C"
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>単位はミリ秒です。</p>
+                <table border="1">
+                    <tr>
+                        <th>値</th>
+                        <th>時間</th>
+                    </tr>
+                    <tr>
+                        <td>100</td>
+                        <td>0.1秒</td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>0.5秒</td>
+                    </tr>
+                    <tr>
+                        <td>1000</td>
+                        <td>1秒</td>
+                    </tr>
+                    <tr>
+                        <td>5000</td>
+                        <td>5秒</td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>必要以上に長いsleepは処理を遅くする原因になります。</p>
+            </section>
+            <section id="sec6">
+                <h2>■ メッセージ表示（MsgBox）</h2>
+                <h3>【概要】</h3>
+                <p>
+                    メッセージを表示します。<br>
+                    デバッグや確認によく使用します。
+                </p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    MsgBox "表示内容"
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <div>
+                    MsgBox "処理を終了しました"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例1】</h3>
+                <p>変数を表示</p>
+                <div>
+                    name := "田中" <br>
+                    MsgBox name
+                </div>
+            </section>
+            <section>
+                <h3>【応用例2】</h3>
+                <p>複数行表示</p>
+                <div>
+                    MsgBox "1行目`n2行目"
+                </div>
+            </section>
+            <section>
+                <h3>【応用例3】</h3>
+                <p>クリップボード内容確認</p>
+                <div>
+                    MsgBox A_Clipboard
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>デバッグ時には</p>
+                <div>
+                    MsgBox "ここまで来た"
+                </div>
+                <p>を挟むだけでも、処理がどこまで実行されているか確認できます。</p>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>MsgBoxは閉じるまで処理が停止します。<br>
+                    処理を止めたくない通知にはTrayTipなど別の方法もありますが、まずはMsgBoxを使いこなせるようになるとよいでしょう。
+                </p>
+            </section>
+            <section id="sec7">
+                <h2>第2章のまとめ</h2>
+                <p>この章では、AutoHotKeyでよく使う基本的な処理を学びました。</p>
+                <table>
+                    <tr>
+                        <th>処理</th>
+                        <th>用途</th>
+                    </tr>
+                    <tr>
+                        <td>Run</td>
+                        <td>アプリ・ファイル・フォルダ・URLを開く</td>
+                    </tr>
+                    <tr>
+                        <td>SendText</td>
+                        <td>文字列をそのまま入力する</td>
+                    </tr>
+                    <tr>
+                        <td>Send</td>
+                        <td>キー操作やショートカットを送信する</td>
+                    </tr>
+                    <tr>
+                        <td>A_Clipboard</td>
+                        <td>クリップボードの内容を取得・変更する</td>
+                    </tr>
+                    <tr>
+                        <td>Sleep</td>
+                        <td>一定時間待機する</td>
+                    </tr>
+                    <tr>
+                        <td>MsgBox</td>
+                        <td>メッセージを表示する</td>
+                    </tr>
+                </table>
+                <p>これらはほぼすべてのAutoHotKeyスクリプトで使用される基本機能です。</p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
