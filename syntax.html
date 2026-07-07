@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/sections.css">
+    <title>AutoHotKey_V2リファレンス_3章</title>
+</head>
+
+<body>
+    <div id="site-wrapper">
+        <a href="#top" class="page-top-btn">TOP</a>
+        <header id="top">
+            <hgroup>
+                <h1>AutoHotKey_V2</h1>
+                <h1>３章　構文</h1>
+            </hgroup>
+            <div>
+                <ol>
+                    <li><a href="index.html">トップ</a></li>
+                    <li><a href="startcondition.html">起動条件</a></li>
+                    <li><a href="process.html">処理</a></li>
+                    <li><a href="syntax.html">構文</a></li>
+                    <li><a href="">書式</a></li>
+                    <li><a href="">Tips</a></li>
+                </ol>
+            </div>
+        </header>
+        <main>
+            <section>
+                <h3>章ショートカット</h3>
+                <ul>
+                    <li><a href="#sec1"> 変数</a></li>
+                    <li><a href="#sec2"> if / else（条件分岐）</a></li>
+                    <li><a href="#sec3">switch（複数分岐）</a></li>
+                    <li><a href="#sec4">Loop（回数指定の繰り返し）</a></li>
+                    <li><a href="#sec5">while（条件付き繰り返し）</a></li>
+                    <li><a href="#sec6">for（コレクションの繰り返し）</a></li>
+                    <li><a href="#sec7">関数</a></li>
+                    <li><a href="#sec8">まとめ</a></li>
+                </ul>
+            </section>
+            <section id="sec1">
+                <h2>■ 変数</h2>
+                <h3>【概要】</h3>
+                <p>
+                    変数は、値を一時的に保存するための入れ物です。<br>
+                    文字列・数値・計算結果などを保存できます。
+                </p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    変数名 := 値
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <div>
+                    name := "田中"<br>
+                    MsgBox name <br>
+                    ↓<br>
+                    田中
+                </div>
+            </section>
+            <section>
+                <h3>【応用例1】</h3>
+                <p>数値を保存する</p>
+                <div>
+                    count := 10 <br>
+                    MsgBox count
+                </div>
+            </section>
+            <section>
+                <h3>【応用例2】</h3>
+                <p>計算する</p>
+                <div>
+                    print := 100 <br>
+                    tax := 10 <br> <br>
+                    total := price + tax <br> <br>
+                    MsgBox total <br>
+                    ↓ <br>
+                    110
+                </div>
+            </section>
+            <section>
+                <h3>【応用例3】</h3>
+                <p>文字列を結合する</p>
+                <div>
+                    lastName := "田中"<br>
+                    firstName := "太郎"<br><br>
+
+                    fullName := lastName . firstName <br><br>
+
+                    MsgBox fullName <br>
+                    ↓<br>
+                    田中太郎
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>
+                    AutoHotKey v2では代入に:=を使用します。<br>
+                    比較に使用する=や==と混同しなように注意しましょう。
+                </p>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>変数名には意味が分かる名前を付けることをおすすめします。</p>
+            </section>
+            <section id="sec2">
+                <h2>■ if / else（条件分岐）</h2>
+                <h3>【概要】</h3>
+                <p>条件によって実行する処理を変更します。</p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    if 条件 {<br>
+                    　処理 <br>
+                    }else {<br>
+                    　処理 <br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <div>
+                    age := 20 <br> <br>
+                    if age >= 18 { <br>
+                    　MsgBox "成人です"<br>
+                    }else{<br>
+                    　MsgBox "未成年です"<br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【応用例1】</h3>
+                <p>メモ帳が起動してるか判定</p>
+                <div>
+                    if WinExist("ahk_exe notepad.exe"){ <br>
+                    　MsgBox "起動しています"<br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【応用例2】</h3>
+                <p>クリップボードが空か判定</p>
+                <div>
+                    if A_Clipboard = ""{<br>
+                    　MsgBox "何もコピーされていません"<br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【応用例3】</h3>
+                <p>複数条件</p>
+                <div>
+                    score := 85 <br><br>
+
+                    if score >= 80{ <br>
+                    　MsgBox "合格"<br>
+                    }else{ <br>
+                    　MsgBox "不合格" <br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>よく使う比較演算子</p>
+                <table border="1">
+                    <tr>
+                        <th>演算子</th>
+                        <th>意味</th>
+                    </tr>
+                    <tr>
+                        <td>==</td>
+                        <td>等しい</td>
+                    </tr>
+                    <tr>
+                        <td>!=</td>
+                        <td>等しくない</td>
+                    </tr>
+                    <tr>
+                        <td>></td>
+                        <td>より大きい</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            << /td>
+                        <td>より小さい</td>
+                    </tr>
+                    <tr>
+                        <td>>=</td>
+                        <td>以上</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <=< /td>
+                        <td>以下</td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>ブロックが1行でも{}を付けることをおすすめします。</p>
+            </section>
+            <section id="sec3">
+                <h2>■ switch（複数分岐）</h2>
+                <h3>【概要】</h3>
+                <p>
+                    値によって複数の処理を切り替えます。<br>
+                    ifが増えてきたらswitchを検討しましょう。
+                </p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    switch 値{ <br>
+                    case 値1: <br><br>
+                    　処理 <br>
+                    case 値2: <br><br>
+                    　処理 <br>
+                    default: <br>
+                    　処理 <br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <div>
+                    day := "土" <br> <br>
+
+                    switch day { <br>
+                    case "月": <br>
+                    　MsgBox "平日" <br><br>
+                    case "土": <br>
+                    　MsgBox "休日" <br><br>
+                    default: <br>
+                    　MsgBox "その他" <br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【応用例】</h3>
+                <p>アプリ名ごとに処理を変える</p>
+                <div>
+                    app := "chrome"<br><br>
+                    switch app{ <br>
+                    case "chrome": <br>
+                    　Run "chrome.exe"<br><br>
+                    case "notepad": <br>
+                    　Run "notepad.exe" <br><br>
+                    dafault: <br>
+                    　MsgBox "未対応"<br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>同じ変数を何度も比較する場合は、ifよりもswitchの方が読みやすくなります。</p>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>条件式(age >= 20など)には向いていません。そのような場合はifを使用しましょう。</p>
+            </section>
+            <section id="sec4">
+                <h2>■ Loop（回数指定の繰り返し）</h2>
+                <h3>【概要】</h3>
+                <p>指定した回数だけ処理を繰り返します。</p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    Loop 回数 {<br>
+                    　処理<br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <p>5回メッセージを表示</p>
+                <div>
+                    Loop 5{ <br>
+                    　MsgBox "Hello" <br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【応用例1】</h3>
+                <p>10回Tabキー</p>
+                <div>
+                    Loop 10 {<br>
+                    　Send "{Tab}"<br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【応用例2】</h3>
+                <p>番号付きで表示</p>
+                <div>
+                    Loop 5 {<br>
+                    　MsgBox A_Index <br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>A_Indexは現在の繰り返し回数です。</p>
+                <div>
+                    結果<br>
+                    1 <br>
+                    2 <br>
+                    3 <br>
+                    4 <br>
+                    5 <br>
+                </div>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>Loopの回数を非常に大きくすると、処理に時間がかかります。</p>
+            </section>
+            <section id="sec5">
+                <h2>■ while（条件付き繰り返し）</h2>
+                <h3>【概要】</h3>
+                <p>条件が真の間だけ繰り返します。</p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    while 条件 { <br>
+                    　処理 <br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <div>
+                    count := 1 <br><br>
+                    while count <= 5 { <br>
+                        　MsgBox count <br>
+                        　count++ <br>
+                        }
+                </div>
+            </section>
+            <section>
+                <h3>【応用例】</h3>
+                <p>アプリが終了するまで待つ</p>
+                <div>
+                    while WinExist("ahk_exe notepad.exe") { <br>
+                    　Sleep 1000 <br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>count++は</p>
+                <div>
+                    count := count + 1
+                </div>
+                <p>と同じ意味です。</p>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>条件が変化しないと無限ループになります。</p>
+            </section>
+            <section id="sec6">
+                <h2>■ for（コレクションの繰り返し）</h2>
+                <h3>【概要】</h3>
+                <p>配列やオブジェクトの内容を順番に処理します。</p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    for 変数 in 配列 { <br>
+                    　処理 <br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <div>
+                    fruits := ["りんご", "みかん", "ぶどう"] <br> <br>
+
+                    for fruit in fruits { <br>
+                    　MsgBox fruit <br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【応用例】</h3>
+                <p>番号付きで表示</p>
+                <div>
+                    fruits := ["りんご", "みかん", "ぶどう"] <br> <br>
+
+                    for index, fruit in fruits{ <br>
+                    　MsgBox index ": " fruit <br>
+                    } <br>
+                    ↓ <br>
+                    1: りんご<br>
+                    2: みかん<br>
+                    3: ぶどう<br>
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>
+                    forは配列やオブジェクトを扱うときに使用します。<br>
+                    単純な回数指定ならLoopの方がシンプルです。
+                </p>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>配列が空の場合は一度も実行されません。</p>
+            </section>
+            <section id="sec7">
+                <h2>■ 関数</h2>
+                <h3>【概要】</h3>
+                <p>処理をひとまとめにいて、何度でも呼び出せるようにします。</p>
+            </section>
+            <section>
+                <h3>【基本構文】</h3>
+                <div>
+                    関数名(){ <br>
+                    　処理 <br>
+                    }
+                </div>
+            </section>
+            <section>
+                <h3>【サンプル】</h3>
+                <div>
+                    Hello(){ <br>
+                    　MsgBox "こんにちは" <br>
+                    } <br> <br>
+
+                    Hello()
+                </div>
+            </section>
+            <section>
+                <h3>【応用例1】</h3>
+                <p>名前を受け取る</p>
+                <div>
+                    Hello(name){ <br>
+                    　MsgBox "こんにちは " name <br>
+                    } <br> <br>
+
+                    Hello("田中")
+                </div>
+            </section>
+            <section>
+                <h3>【応用例2】</h3>
+                <p>合計を返す</p>
+                <div>
+                    Add(a, b){ <br>
+                    　return a + b <br>
+                    } <br> <br>
+
+                    result := Add(5, 10) <br> <br>
+
+                    MsgBox result
+                </div>
+            </section>
+            <section>
+                <h3>【解説】</h3>
+                <p>returnは、関数の結果を呼び出し元へ返します。</p>
+            </section>
+            <section>
+                <h3>【注意点】</h3>
+                <p>同じ処理を複数回書くなら、関数にまとめることで保守性が向上します。</p>
+            </section>
+            <section id="sec8">
+                <h2>第3章のまとめ</h2>
+                <p>この章では、スクリプトを柔軟に制御するための基本構文を学びました。</p>
+                <table border="1">
+                    <tr>
+                        <th>構文</th>
+                        <th>用途</th>
+                    </tr>
+                    <tr>
+                        <td>if/else</td>
+                        <td>値を保存する</td>
+                    </tr>
+                    <tr>
+                        <td>switch</td>
+                        <td>複数の選択肢から処理を選ぶ</td>
+                    </tr>
+                    <tr>
+                        <td>Loop</td>
+                        <td>指定回数だけ繰り返す</td>
+                    </tr>
+                    <tr>
+                        <td>while</td>
+                        <td>条件が真の間だけ繰り返す</td>
+                    </tr>
+                    <tr>
+                        <td>for</td>
+                        <td>配列やオブジェクトを順番に処理する</td>
+                    </tr>
+                    <tr>
+                        <td>関数</td>
+                        <td>処理をまとめて再利用する</td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <h3>実務での使い分け</h3>
+                <p>最後に、実際にスクリプト作成での使い分けを覚えておくと便利です。</p>
+                <ul>
+                    <li>決まった回数だけ繰り返す → Loop</li>
+                    <li>条件が満たされるまで繰り返す → while</li>
+                    <li>複数の選択肢を分岐する → switch</li>
+                    <li>条件に応じて処理を変える → if / else</li>
+                    <li>同じ処理を何度も使う → 関数</li>
+                    <li>複数のデータを順番に処理する → for</li>
+                </ul>
+                <p>この考え方を身につけると、どの構文を選べばよいか判断しやすくなります。</p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
